@@ -1,3 +1,4 @@
+# all the individual checks (entropy, patterns, character types)
 import math
 import re
 import string

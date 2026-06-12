@@ -1,0 +1,390 @@
+/* ── Reset & Base ───────────────────────────────────────── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #0f1117;
+    --bg-card: #1a1d27;
+    --bg-input: #12151e;
+    --border: #2a2d3a;
+    --text: #e8eaf0;
+    --text-muted: #8b8fa8;
+    --accent: #6c63ff;
+    --accent-hover: #5a52e0;
+
+    /* Strength colors */
+    --very-weak: #ff4757;
+    --weak: #ff6b35;
+    --moderate: #ffa502;
+    --strong: #2ed573;
+    --very-strong: #1e90ff;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    line-height: 1.6;
+}
+
+/* ── Layout ─────────────────────────────────────────────── */
+.container {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+/* ── Header ─────────────────────────────────────────────── */
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.logo {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.tagline {
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+}
+
+/* ── Cards ──────────────────────────────────────────────── */
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.card-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+/* ── Input ──────────────────────────────────────────────── */
+.input-wrapper {
+    position: relative;
+    margin-bottom: 0.75rem;
+}
+
+#password-input {
+    width: 100%;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.875rem 3rem 0.875rem 1rem;
+    color: var(--text);
+    font-size: 1rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+    transition: border-color 0.2s;
+    outline: none;
+}
+
+#password-input:focus {
+    border-color: var(--accent);
+}
+
+.toggle-btn {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.toggle-btn:hover {
+    opacity: 1;
+}
+
+/* ── Strength Bar ───────────────────────────────────────── */
+.strength-bar-wrapper {
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0%;
+    border-radius: 3px;
+    transition: width 0.4s ease, background-color 0.4s ease;
+}
+
+.strength-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+    text-align: center;
+}
+
+/* ── Buttons ────────────────────────────────────────────── */
+.input-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--accent-hover);
+}
+
+.btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.breach-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.breach-toggle input {
+    cursor: pointer;
+    accent-color: var(--accent);
+}
+
+/* ── Privacy Note ───────────────────────────────────────── */
+.privacy-note {
+    margin-top: 1rem;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* ── Score Card ─────────────────────────────────────────── */
+.score-card {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.score-circle {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: border-color 0.4s;
+}
+
+.score-number {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.score-max {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.score-strength {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.score-stats {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+}
+
+/* ── Two Column Grid ────────────────────────────────────── */
+.two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+@media (max-width: 540px) {
+    .two-col {
+        grid-template-columns: 1fr;
+    }
+
+    .score-card {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* ── Check and Warning Lists ────────────────────────────── */
+.check-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.check-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.875rem;
+}
+
+.check-list li .icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+/* ── Breach Card ────────────────────────────────────────── */
+.breach-card {
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.breach-safe {
+    color: var(--strong);
+    font-weight: 600;
+}
+
+.breach-danger {
+    color: var(--very-weak);
+    font-weight: 600;
+}
+
+/* ── Suggestions ────────────────────────────────────────── */
+.suggestion-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.suggestion-list li {
+    font-size: 0.875rem;
+    padding-left: 1.25rem;
+    position: relative;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.suggestion-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+}
+
+/* ── Strength Color Classes ─────────────────────────────── */
+.very-weak {
+    color: var(--very-weak) !important;
+}
+
+.weak {
+    color: var(--weak) !important;
+}
+
+.moderate {
+    color: var(--moderate) !important;
+}
+
+.strong {
+    color: var(--strong) !important;
+}
+
+.very-strong {
+    color: var(--very-strong) !important;
+}
+
+.bar-very-weak {
+    background: var(--very-weak);
+}
+
+.bar-weak {
+    background: var(--weak);
+}
+
+.bar-moderate {
+    background: var(--moderate);
+}
+
+.bar-strong {
+    background: var(--strong);
+}
+
+.bar-very-strong {
+    background: var(--very-strong);
+}
+
+/* ── Loading Spinner ────────────────────────────────────── */
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+}
+
+.spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

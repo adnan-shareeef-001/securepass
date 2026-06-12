@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SecurePass — Password Strength Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- ── Header ─────────────────────────────────────────── -->
+        <header class="header">
+            <div class="logo">🔒</div>
+            <h1>SecurePass</h1>
+            <p class="tagline">Password Strength Analyzer</p>
+        </header>
+
+        <!-- ── Input Card ─────────────────────────────────────── -->
+        <div class="card input-card">
+
+            <div class="input-wrapper">
+                <input type="password" id="password-input" placeholder="Enter a password to analyze..."
+                    autocomplete="off" spellcheck="false" maxlength="128" />
+                <!-- Toggle button shows/hides the password -->
+                <button class="toggle-btn" id="toggle-visibility" title="Show/hide password">
+                    👁
+                </button>
+            </div>
+
+            <!-- Live strength bar — updates as you type -->
+            <div class="strength-bar-wrapper">
+                <div class="strength-bar" id="strength-bar"></div>
+            </div>
+            <div class="strength-label" id="strength-label">Enter a password above</div>
+
+            <div class="input-actions">
+                <button class="btn btn-primary" id="analyze-btn">
+                    Analyze Password
+                </button>
+                <label class="breach-toggle">
+                    <input type="checkbox" id="breach-check" checked />
+                    <span>Check breach databases</span>
+                </label>
+            </div>
+
+            <p class="privacy-note">
+                🛡 Your password is never stored or sent as plain text.
+                Breach checks use k-anonymity — only a 5-character hash prefix is transmitted.
+            </p>
+
+        </div>
+
+        <!-- ── Results Section (hidden until analysis runs) ───── -->
+        <div class="results-section" id="results-section" style="display:none;">
+
+            <!-- Score Card -->
+            <div class="card score-card" id="score-card">
+                <div class="score-circle" id="score-circle">
+                    <span class="score-number" id="score-number">0</span>
+                    <span class="score-max">/100</span>
+                </div>
+                <div class="score-info">
+                    <div class="score-strength" id="score-strength">—</div>
+                    <div class="score-stats" id="score-stats"></div>
+                </div>
+            </div>
+
+            <!-- Two column grid: Checks + Warnings -->
+            <div class="two-col">
+
+                <!-- Character Checks -->
+                <div class="card">
+                    <h3 class="card-title">Character types</h3>
+                    <ul class="check-list" id="check-list"></ul>
+                </div>
+
+                <!-- Warnings -->
+                <div class="card">
+                    <h3 class="card-title">Warnings</h3>
+                    <ul class="check-list" id="warning-list"></ul>
+                </div>
+
+            </div>
+
+            <!-- Breach Result -->
+            <div class="card breach-card" id="breach-card"></div>
+
+            <!-- Suggestions -->
+            <div class="card suggestions-card">
+                <h3 class="card-title">💡 Suggestions</h3>
+                <ul class="suggestion-list" id="suggestion-list"></ul>
+            </div>
+
+        </div>
+
+        <!-- ── Loading Spinner (shown during API call) ─────────── -->
+        <div class="loading" id="loading" style="display:none;">
+            <div class="spinner"></div>
+            <p>Checking breach databases...</p>
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

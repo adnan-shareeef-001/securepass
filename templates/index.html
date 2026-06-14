@@ -91,7 +91,14 @@
 
             <!-- Suggestions -->
             <div class="card suggestions-card">
-                <h3 class="card-title">💡 Suggestions</h3>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                    <h3 class="card-title" style="margin-bottom:0">💡 Suggestions</h3>
+                    <button class="btn" id="copy-btn" style="padding:0.4rem 0.9rem; font-size:0.8rem;
+                            background:transparent; border:1px solid var(--border);
+                            color:var(--text-muted);">
+                        Copy summary
+                    </button>
+                </div>
                 <ul class="suggestion-list" id="suggestion-list"></ul>
             </div>
 

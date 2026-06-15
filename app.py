@@ -28,8 +28,9 @@ def index():
 @app.route('/analyze', methods=['POST'])
 def analyze():
 
-    # request.get_json() reads the JSON body sent by the browser
-    data = request.get_json()
+    # force=True  → accept even if Content-Type header is missing
+    # silent=True → return None instead of raising an error on bad JSON
+    data = request.get_json(force=True, silent=True)
 
     # Validate: did we actually receive data?
     if not data:

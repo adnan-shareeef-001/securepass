@@ -145,8 +145,10 @@ class TestPatternDetection:
         # 'aa' is only two — need three in a row
         assert has_repeated_chars('aab123') is False
 
-    def test_repeated_two_chars_not_enough(self):
-        assert has_repeated_chars('aa!XYZ') is False
+    def test_sequential_two_chars_not_enough(self):
+        # Need at least 3 consecutive — 'ab' alone doesn't count
+        # Using a password with no 3-char sequence anywhere
+        assert has_sequential_chars('ab!PQm') is False
 
     # Common suffixes
     def test_common_suffix_123(self):
